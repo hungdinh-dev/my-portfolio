@@ -101,7 +101,7 @@ const About = () => {
                     <div className="grid-container">
                         <img src="assets/grid3.png" alt="grid-3" className="w-full sm:h-[266px] h-fit object-contain" />
                         <div>
-                            <p className="grid-headtext">{t('about_my_passion_title')}</p>
+                            <p className="grid-headtext">{t('about_my_passion')}</p>
                             <p className="grid-subtext">
                                 {t('about_my_passion_desc')}
                             </p>
