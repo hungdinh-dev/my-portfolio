@@ -22,7 +22,7 @@ const vi = {
       "Mình linh hoạt với múi giờ làm việc và sẵn sàng hợp tác toàn cầu.",
     about_work_location_desc:
       "Hiện Mình đang sống tại Việt Nam, Thành phố Đà Nẵng và có thể làm việc từ xa với các đối tác trên toàn thế giới.",
-    about_my_passion_title: "Đam mê lập trình",
+    about_my_passion: "Đam mê lập trình",
     about_my_passion_desc:
       "Lập trình không chỉ là công việc mà còn là niềm yêu thích của tôi. Tôi luôn hứng thú với việc giải quyết vấn đề và biến ý tưởng thành sản phẩm thực tế. Tôi thích khám phá công nghệ mới để không ngừng hoàn thiện bản thân.",
     my_projects: "Các dự án của tôi",
