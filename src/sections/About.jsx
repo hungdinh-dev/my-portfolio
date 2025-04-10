@@ -2,17 +2,25 @@ import { useEffect, useState } from 'react';
 import Globe from 'react-globe.gl';
 import AOS from 'aos';
 import Button from '../components/Button.jsx';
+import { useTranslation } from 'react-i18next';
+import { GrContact } from "react-icons/gr";
+import { MdDone } from "react-icons/md";
+import { FaRegCopy } from "react-icons/fa6";
+import { toast } from 'react-toastify';
 
 const About = () => {
+
+    const { t, i18n } = useTranslation();
+
     const [hasCopied, setHasCopied] = useState(false);
 
     const handleCopy = () => {
         navigator.clipboard.writeText('baohungdinhnguyen1412@gmail.com');
         setHasCopied(true);
-
+        toast.success(t('copy_email_success'))
         setTimeout(() => {
             setHasCopied(false);
-        }, 2000);
+        }, 5000);
     };
 
     useEffect(() => {
@@ -31,13 +39,14 @@ const About = () => {
                     data-aos="fade-down"
                     data-aos-offset="200">
                     <div className="grid-container">
-                        <img src="assets/grid1.png" alt="grid-1" className="w-full sm:h-[276px] h-fit object-contain" />
+                        <div className='flex justify-center items-center'>
+                            <img src="assets/avaCV.jpg" alt="grid-1" className="rounded-3xl sm:h-[276px] object-contain" />
+                        </div>
 
                         <div>
-                            <p className="grid-headtext">Hi, I’m Adrian Hajdin</p>
+                            <p className="grid-headtext">{t('about_me')}</p>
                             <p className="grid-subtext">
-                                With 12 years of experience, I have honed my skills in both frontend and backend dev, creating dynamic
-                                and responsive websites.
+                                {t('about_me_desc')}
                             </p>
                         </div>
                     </div>
@@ -51,10 +60,9 @@ const About = () => {
                         <img src="assets/grid2.png" alt="grid-2" className="w-full sm:h-[276px] h-fit object-contain" />
 
                         <div>
-                            <p className="grid-headtext">Tech Stack</p>
+                            <p className="grid-headtext">{t('about_techstack')}</p>
                             <p className="grid-subtext">
-                                I specialize in a variety of languages, frameworks, and tools that allow me to build robust and scalable
-                                applications
+                                {t('about_techstack_desc')}
                             </p>
                         </div>
                     </div>
@@ -79,9 +87,9 @@ const About = () => {
                             />
                         </div>
                         <div>
-                            <p className="grid-headtext">I’m very flexible with time zone communications & locations</p>
-                            <p className="grid-subtext">I&apos;m based in Rjieka, Croatia and open to remote work worldwide.</p>
-                            <Button name="Contact Me" isBeam containerClass="w-full mt-10" />
+                            <p className="grid-headtext">{t('about_work_location')}</p>
+                            <p className="grid-subtext">{t('about_work_location_desc')}</p>
+                            <Button name="contact_me" isBeam containerClass="w-full mt-10" />
                         </div>
                     </div>
                 </div>
@@ -93,10 +101,9 @@ const About = () => {
                     <div className="grid-container">
                         <img src="assets/grid3.png" alt="grid-3" className="w-full sm:h-[266px] h-fit object-contain" />
                         <div>
-                            <p className="grid-headtext">My Passion for Coding</p>
+                            <p className="grid-headtext">{t('about_my_passion_title')}</p>
                             <p className="grid-subtext">
-                                I love solving problems and building things through code. Programming isn&apos;t just my
-                                profession—it&apos;s my passion. I enjoy exploring new technologies, and enhancing my skills.
+                                {t('about_my_passion_desc')}
                             </p>
                         </div>
                     </div>
@@ -107,16 +114,30 @@ const About = () => {
                     data-aos-offset="200"
                 >
                     <div className="grid-container">
-                        <img
-                            src="assets/grid4.png"
+                        {/* <img
+                            src="assets/grid5.png"
                             alt="grid-4"
                             className="w-full md:h-[126px] sm:h-[276px] h-fit object-cover sm:object-top"
-                        />
+                        /> */}
+                        <div className='flex justify-center items-center animate-bounce'>
+                            <GrContact className='text-white' size={100} />
+                        </div>
 
                         <div className="space-y-2">
-                            <p className="grid-subtext text-center">Contact me</p>
+                            <p className="grid-subtext text-center"> {t('contact_me')}</p>
+                            <p className="text-sm text-gray-300 text-center"> {t('contact_me_via_mail')}</p>
                             <div className="copy-container" onClick={handleCopy}>
-                                <img src={hasCopied ? 'assets/tick.svg' : 'assets/copy.svg'} alt="copy" />
+                                <div className='text-white'>
+                                    {hasCopied ? <MdDone size={35} /> : <FaRegCopy size={35} />}
+                                </div>
+                                {/* <img src={hasCopied ? <MdDone size={20} /> : <FaRegCopy size={20} />} alt="copy" /> */}
+                                {/* <lord-icon
+                                    src="https://cdn.lordicon.com/ijahpotn.json"
+                                    trigger="hover"
+                                    colors="primary:#ffffff,secondary:#ffffff"
+                                    style={{ width: "80px", height: "80px" }}
+                                >
+                                </lord-icon> */}
                                 <p className="lg:text-base md:text-xl font-medium text-gray_gradient text-white">baohungdinhnguyen1412@gmail.com</p>
                             </div>
                         </div>

@@ -1,21 +1,25 @@
 import React, { useState } from 'react'
 import { navLinks } from '../constants'
 import LanguageSwitcher from '../components/LanguageSwitcher'
+import { useTranslation } from 'react-i18next';
 
 const NavItems = () => {
+
+    const { t, i18n } = useTranslation();
+
     return (
         <ul className='nav-ul'>
             {navLinks.map(({ id, href, name }) => {
                 return (
                     <li key={id} className='nav-li'>
                         <a href={href} className='nav-li_a' onClick={() => { }}>
-                            {name}
+                            {t(`${name}`)}
                         </a>
                     </li>
                 )
             })
             }
-            <LanguageSwitcher  />
+            <LanguageSwitcher />
         </ul>
     )
 }

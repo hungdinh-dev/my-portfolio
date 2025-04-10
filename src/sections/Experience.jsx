@@ -7,9 +7,13 @@ import CanvasLoader from '../components/CanvasLoader';
 import { workExperiences } from '../constants/index.js';
 import Cat from '../components/Cat.jsx';
 import AOS from 'aos';
+import DemoComputer from '../components/DemoComputer.jsx';
+import { useTranslation } from 'react-i18next';
 
 const WorkExperience = () => {
     const [animationName, setAnimationName] = useState('idle');
+
+    const { t, i18n } = useTranslation();
 
     useEffect(() => {
         AOS.init({
@@ -23,7 +27,7 @@ const WorkExperience = () => {
     return (
         <section className="c-space my-20" id="work">
             <div className="w-full text-white-600">
-                <p className="head-text" data-aos="fade-up" data-aos-offset="200">My Work Experience</p>
+                <p className="head-text" data-aos="fade-up" data-aos-offset="200">{t('work_exp')}</p>
 
                 <div className="work-container">
                     <div className="work-canvas" data-aos="fade-right" data-aos-offset="200">
@@ -31,11 +35,14 @@ const WorkExperience = () => {
                             <ambientLight intensity={7} />
                             <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
                             <directionalLight position={[10, 10, 10]} intensity={1} />
-                            <OrbitControls enableZoom={false} maxPolarAngle={Math.PI / 2} />
+                            <OrbitControls enableZoom={true} maxPolarAngle={Math.PI / 2} />
 
                             <Suspense fallback={<CanvasLoader />}>
-                                <Developer position-y={-3} scale={3} animationName={animationName} />
+                                {/* <Developer position-y={-3} scale={3} animationName={animationName} /> */}
                                 {/* <Cat rotation={[0, -Math.PI, 0]} position-y={0} scale={2.5} animationName={animationName} /> */}
+                                <group scale={4} position={[1, -6, -10]} rotation={[0, 0, 0]}>
+                                    <DemoComputer />
+                                </group>
                             </Suspense>
                         </Canvas>
                     </div>
@@ -44,7 +51,7 @@ const WorkExperience = () => {
                         <div className="sm:py-10 py-5 sm:px-5 px-2.5">
                             {workExperiences.map((item, index) => (
                                 <div
-                                    data-aos="fade-right" 
+                                    data-aos="fade-right"
                                     data-aos-offset="200"
                                     data-aos-delay="700"
                                     key={index}
@@ -54,18 +61,18 @@ const WorkExperience = () => {
                                     className="work-content_container group">
                                     <div className="flex flex-col h-full justify-start items-center py-2">
                                         <div className="work-content_logo">
-                                            <img className="w-full h-full" src={item.icon} alt="" />
+                                            <img className="w-full h-full object-cover" src={item.icon} alt="" />
                                         </div>
 
                                         <div className="work-content_bar" />
                                     </div>
 
                                     <div className="sm:p-5 px-2.5 py-5">
-                                        <p className="font-bold text-white-800">{item.name}</p>
+                                        <p className="font-bold text-white-800">{t(`${item.name}`)}</p>
                                         <p className="text-sm mb-5">
-                                            {item.pos} -- <span>{item.duration}</span>
+                                            {t(`${item.pos}`)} -- <span>{t(`${item.duration}`)}</span>
                                         </p>
-                                        <p className="group-hover:text-white transition-all ease-in-out duration-500">{item.title}</p>
+                                        <p className="group-hover:text-white transition-all ease-in-out duration-500">{t(`${item.title}`)}</p>
                                     </div>
                                 </div>
                             ))}

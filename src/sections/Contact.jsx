@@ -1,8 +1,9 @@
 import emailjs from '@emailjs/browser';
 import { useRef, useState } from 'react';
-
+import { useTranslation } from 'react-i18next';
 // import useAlert from '../hooks/useAlert.js';
 // import Alert from '../components/Alert.jsx';
+import { toast } from 'react-toastify';
 
 const Contact = () => {
     const formRef = useRef();
@@ -66,6 +67,7 @@ const Contact = () => {
     //         );
     // };
 
+    const { t, i18n } = useTranslation();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -80,7 +82,7 @@ const Contact = () => {
                     message: form.message,
                 }, 'SNb9qywjNasp6VmC7')
             setLoading(false)
-            alert('Send')
+            toast.success("Send Mail Success")
             setForm({
                 name: '',
                 email: '',
@@ -89,7 +91,7 @@ const Contact = () => {
         } catch (error) {
             setLoading(false)
             console.log(error)
-            alert('st when wrong')
+            toast.error("Something when wrong")
         }
     }
 
@@ -98,18 +100,17 @@ const Contact = () => {
             {/* {alert.show && <Alert {...alert} />} */}
 
             <div className="relative min-h-screen flex items-center justify-center flex-col">
-                <img src="/assets/terminal.png" alt="terminal-bg" className="absolute inset-0 min-h-screen" />
+                {/* <img src="/assets/terminal.png" alt="terminal-bg" className="absolute inset-0 min-h-screen" /> */}
 
                 <div className="contact-container">
-                    <h3 className="head-text">Let's talk</h3>
+                    <h3 className="head-text">{t('contact_title')}</h3>
                     <p className="text-lg text-white-600 mt-3">
-                        Whether you’re looking to build a new website, improve your existing platform, or bring a unique project to
-                        life, I’m here to help.
+                        {t('contact_subtitle')}
                     </p>
 
                     <form ref={formRef} onSubmit={handleSubmit} className="mt-12 flex flex-col space-y-7">
                         <label className="space-y-3">
-                            <span className="field-label">Full Name</span>
+                            <span className="field-label">{t('contact_form_fullname')}</span>
                             <input
                                 type="text"
                                 name="name"
@@ -117,12 +118,12 @@ const Contact = () => {
                                 onChange={handleChange}
                                 required
                                 className="field-input"
-                                placeholder="ex., John Doe"
+                                placeholder={t('contact_form_fullname_exp')}
                             />
                         </label>
 
                         <label className="space-y-3">
-                            <span className="field-label">Email address</span>
+                            <span className="field-label">{t('contact_form_email')}</span>
                             <input
                                 type="email"
                                 name="email"
@@ -130,12 +131,12 @@ const Contact = () => {
                                 onChange={handleChange}
                                 required
                                 className="field-input"
-                                placeholder="ex., johndoe@gmail.com"
+                                placeholder={t('contact_form_email_exp')}
                             />
                         </label>
 
                         <label className="space-y-3">
-                            <span className="field-label">Your message</span>
+                            <span className="field-label">{t('contact_form_message')}</span>
                             <textarea
                                 name="message"
                                 value={form.message}
@@ -143,12 +144,12 @@ const Contact = () => {
                                 required
                                 rows={5}
                                 className="field-input"
-                                placeholder="Share your thoughts or inquiries..."
+                                placeholder={t('contact_form_message_exp')}
                             />
                         </label>
 
                         <button className="field-btn" type="submit" disabled={loading}>
-                            {loading ? 'Sending...' : 'Send Message'}
+                            {loading ? t('contact_button_sending') : t('contact_button_send')}
 
                             <img src="/assets/arrow-up.png" alt="arrow-up" className="field-btn_arrow" />
                         </button>
