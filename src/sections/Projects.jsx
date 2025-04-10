@@ -9,11 +9,15 @@ import CanvasLoader from '../components/CanvasLoader.jsx';
 import DemoComputer from '../components/DemoComputer.jsx';
 import AOS from 'aos';
 import { DemoLaptop } from '../components/DemoLaptop.jsx';
+import { FiGithub } from "react-icons/fi";
+import { useTranslation } from 'react-i18next';
 
 const projectCount = myProjects.length;
 
 const Projects = () => {
     const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
+
+    const { t, i18n } = useTranslation();
 
     const handleNavigation = (direction) => {
         setSelectedProjectIndex((prevIndex) => {
@@ -42,8 +46,7 @@ const Projects = () => {
 
     return (
         <section className="c-space my-20">
-            <p className="head-text">My Selected Work</p>
-
+            <p className="head-text" data-aos="fade-up" data-aos-offset="200">{t('my_projects')}</p>
             <div className="grid lg:grid-cols-2 grid-cols-1 mt-12 gap-5 w-full">
                 <div className="flex flex-col gap-5 relative sm:p-10 py-10 px-5 shadow-2xl shadow-black-200" data-aos="fade-right" data-aos-offset="200">
                     <div className="absolute top-0 right-0">
@@ -55,9 +58,9 @@ const Projects = () => {
                     </div>
 
                     <div className="flex flex-col gap-5 text-white-600 my-5">
-                        <p className="text-white text-2xl font-semibold animatedText">{currentProject.title}</p>
-                        <p className="animatedText">{currentProject.desc}</p>
-                        <p className="animatedText">{currentProject.subdesc}</p>
+                        <p className="text-white text-2xl font-semibold animatedText">{t(`${currentProject.title}`)}</p>
+                        <p className="animatedText">{t(`${currentProject.desc}`)}</p>
+                        <p className="animatedText">{t(`${currentProject.subdesc}`)}</p>
                     </div>
 
                     <div className="flex items-center justify-between flex-wrap gap-5">
@@ -74,8 +77,9 @@ const Projects = () => {
                             href={currentProject.href}
                             target="_blank"
                             rel="noreferrer">
-                            <p>Check Live Site</p>
-                            <img src="/assets/arrow-up.png" alt="arrow" className="w-3 h-3" />
+                            <p>Check github</p>
+                            <FiGithub size={20} className='animate-pulse' />
+                            {/* <img src="/assets/arrow-up.png" alt="arrow" className="w-3 h-3" /> */}
                         </a>
                     </div>
 

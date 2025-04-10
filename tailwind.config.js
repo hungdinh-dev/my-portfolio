@@ -4,7 +4,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        generalsans: ["General Sans", "sans-serif"],
+        // generalsans: ["General Sans", "sans-serif"],
+        roboto: ["Roboto", "sans-serif"],
       },
       colors: {
         black: {
